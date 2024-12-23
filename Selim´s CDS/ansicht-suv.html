@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ansicht SUV</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            flex-direction: column;
+        }
+        .slider {
+            position: relative;
+            width: 80%;
+            max-width: 800px;
+        }
+        .slides {
+            display: flex;
+            overflow: hidden;
+        }
+        .slides img {
+            width: 100%;
+            border-radius: 10px;
+            display: none;
+        }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #333;
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+        }
+        .arrow.left {
+            left: 10px;
+        }
+        .arrow.right {
+            right: 10px;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        .large-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .large-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="slider">
+        <button class="arrow left" onclick="prevSlide()">&#10094;</button>
+        <div class="slides">
+            <img src="https://essenbelebt.at/wp-content/uploads/2020/04/20200429-Kartoffeln-aufgetu%CC%88rmt.jpg" alt="Bild 1">
+            <img src="https://example.com/image2.jpg" alt="Bild 2">
+            <img src="https://example.com/image3.jpg" alt="Bild 3">
+            <img src="https://example.com/image4.jpg" alt="Bild 4">
+            <img src="https://example.com/image5.jpg" alt="Bild 5">
+            <img src="https://example.com/image6.jpg" alt="Bild 6">
+            <img src="https://example.com/image7.jpg" alt="Bild 7">
+            <img src="https://example.com/image8.jpg" alt="Bild 8">
+            <img src="https://example.com/image9.jpg" alt="Bild 9">
+            <img src="https://example.com/image10.jpg" alt="Bild 10">
+        </div>
+        <button class="arrow right" onclick="nextSlide()">&#10095;</button>
+    </div>
+    <div class="button-container">
+        <a href="suv.html"><button class="large-button">Zurück</button></a>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slides img');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.display = i === index ? 'block' : 'none';
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Initial slide
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
